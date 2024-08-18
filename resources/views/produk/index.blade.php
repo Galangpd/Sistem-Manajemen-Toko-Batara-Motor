@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('title')
-    Daftar Produk
+    Data Barang
 @endsection
 
 @section('breadcrumb')
     @parent
-    <li class="active">Daftar Produk</li>
+    <li class="active">Data Barang</li>
 @endsection
 
 @section('content')
@@ -33,10 +33,10 @@
                             <th>Nama</th>
                             <th>Kategori</th>
                             <th>Merk</th>
+                            <th>Stok</th>
+                            <th>Diskon</th>
                             <th>Harga Beli</th>
                             <th>Harga Jual</th>
-                            <th>Diskon</th>
-                            <th>Stok</th>
                             <th width="15%"><i class="fa fa-cog"></i></th>
                         </thead>
                     </table>
@@ -69,10 +69,10 @@
                 {data: 'nama_produk'},
                 {data: 'nama_kategori'},
                 {data: 'merk'},
+                {data: 'stok'},
+                {data: 'diskon'},
                 {data: 'harga_beli'},
                 {data: 'harga_jual'},
-                {data: 'diskon'},
-                {data: 'stok'},
                 {data: 'aksi', searchable: false, sortable: false},
             ]
         });
@@ -108,7 +108,7 @@
 
     function editForm(url) {
         $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Edit Produk');
+        $('#modal-form .modal-title').text('Edit Barang');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);

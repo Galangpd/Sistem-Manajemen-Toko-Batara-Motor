@@ -34,7 +34,7 @@ class PembelianController extends Controller
                 return 'Rp. '. format_uang($pembelian->bayar);
             })
             ->addColumn('tanggal', function ($pembelian) {
-                return tanggal_indonesia($pembelian->created_at, false);
+                return tanggal_indonesia(date('d-m-Y', strtotime($pembelian->created_at)), false);
             })
             ->addColumn('supplier', function ($pembelian) {
                 return $pembelian->supplier->nama;

@@ -45,7 +45,7 @@
                 <form class="form-produk">
                     @csrf
                     <div class="form-group row">
-                        <label for="kode_produk" class="col-lg-2">Kode Produk</label>
+                        <label for="kode_produk" class="col-lg-2">Pilih Produk</label>
                         <div class="col-lg-5">
                             <div class="input-group">
                                 <input type="hidden" name="id_penjualan" id="id_penjualan" value="{{ $id_penjualan }}">
@@ -120,7 +120,7 @@
                             <div class="form-group row">
                                 <label for="diterima" class="col-lg-2 control-label">Diterima</label>
                                 <div class="col-lg-8">
-                                    <input type="number" id="diterima" class="form-control" name="diterima" value="{{ $penjualan->diterima ?? 0 }}">
+                                    <input type="number" id="diterima" class="form-control" name="diterima" value="{{ $penjualan->diterima ?? 0 }}" min="0">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -241,6 +241,16 @@
 
             let diterima = parseFloat($('#diterima').val());
             let total = parseFloat($('#total').val());
+
+            let totalJumlahBarang = 0;
+            $('.table-penjualan .quantity').each(function () {
+                totalJumlahBarang += parseInt($(this).val()) || 0;
+            });
+
+            if (totalJumlahBarang === 0) {
+                alert('Tidak ada barang yang ditambahkan. Transaksi tidak bisa disimpan.');
+                return;
+            }
 
             if (diterima < total) {
                 alert('Nominal diterima kurang dari total pembayaran. Transaksi tidak bisa disimpan.');

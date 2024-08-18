@@ -12,8 +12,8 @@ class LaporanController extends Controller
 {
     public function index(Request $request)
     {
-        $tanggalAwal = date('Y-m-d', mktime(0, 0, 0, date('m'), 1, date('Y')));
-        $tanggalAkhir = date('Y-m-d');
+        $tanggalAwal = date('d-m-Y', mktime(0, 0, 0, date('m'), 1, date('Y')));
+        $tanggalAkhir = date('d-m-Y');
 
         if ($request->has('tanggal_awal') && $request->tanggal_awal != "" && $request->has('tanggal_akhir') && $request->tanggal_akhir) {
             $tanggalAwal = $request->tanggal_awal;
@@ -34,19 +34,17 @@ class LaporanController extends Controller
             $tanggal = $awal;
             $awal = date('Y-m-d', strtotime("+1 day", strtotime($awal)));
 
-            $total_penjualan = Penjualan::where('created_at', 'LIKE', "%$tanggal%")->sum('bayar');
-            $total_pembelian = Pembelian::where('created_at', 'LIKE', "%$tanggal%")->sum('bayar');
-            $total_pengeluaran = Pengeluaran::where('created_at', 'LIKE', "%$tanggal%")->sum('nominal');
+            $total_penjualan = Penjualan::whereDate('created_at', $tanggal)->sum('bayar');
+            $total_pembelian = Pembelian::whereDate('created_at', $tanggal)->sum('bayar');
 
-            $pendapatan = $total_penjualan - $total_pembelian - $total_pengeluaran;
+            $pendapatan = $total_penjualan - $total_pembelian;
             $total_pendapatan += $pendapatan;
 
             $row = array();
             $row['DT_RowIndex'] = $no++;
-            $row['tanggal'] = tanggal_indonesia($tanggal, false);
+            $row['tanggal'] = tanggal_indonesia(date('d-m-Y', strtotime($tanggal)), false);
             $row['penjualan'] = format_uang($total_penjualan);
             $row['pembelian'] = format_uang($total_pembelian);
-            $row['pengeluaran'] = format_uang($total_pengeluaran);
             $row['pendapatan'] = format_uang($pendapatan);
 
             $data[] = $row;
@@ -56,8 +54,7 @@ class LaporanController extends Controller
             'DT_RowIndex' => '',
             'tanggal' => '',
             'penjualan' => '',
-            'pembelian' => '',
-            'pengeluaran' => 'Total Pendapatan',
+            'pembelian' => 'Total Pendapatan',
             'pendapatan' => format_uang($total_pendapatan),
         ];
 

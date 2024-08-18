@@ -39,13 +39,13 @@ function tanggal_indonesia($tgl, $tampil_hari = true)
         'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
     );
 
-    $tahun   = substr($tgl, 0, 4);
-    $bulan   = $nama_bulan[(int) substr($tgl, 5, 2)];
-    $tanggal = substr($tgl, 8, 2);
+    $tanggal = substr($tgl, 0, 2);
+    $bulan   = $nama_bulan[(int) substr($tgl, 3, 2)];
+    $tahun   = substr($tgl, 6, 4);
     $text    = '';
 
     if ($tampil_hari) {
-        $urutan_hari = date('w', mktime(0,0,0, substr($tgl, 5, 2), $tanggal, $tahun));
+        $urutan_hari = date('w', mktime(0,0,0, substr($tgl, 3, 2), $tanggal, $tahun));
         $hari        = $nama_hari[$urutan_hari];
         $text       .= "$hari, $tanggal $bulan $tahun";
     } else {

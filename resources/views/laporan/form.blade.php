@@ -21,7 +21,7 @@
                         <label for="tanggal_akhir" class="col-lg-2 col-lg-offset-1 control-label">Tanggal Akhir</label>
                         <div class="col-lg-6">
                             <input type="text" name="tanggal_akhir" id="tanggal_akhir" class="form-control datepicker" required
-                                value="{{ request('tanggal_akhir') ?? date('Y-m-d') }}"
+                                value="{{ request('tanggal_akhir') ?? date('d-m-Y') }}"
                                 style="border-radius: 0 !important;">
                             <span class="help-block with-errors"></span>
                         </div>

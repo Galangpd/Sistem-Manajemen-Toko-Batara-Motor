@@ -48,14 +48,14 @@
                 url: '{{ route('penjualan.data') }}',
             },
             columns: [
-                {data: 'DT_RowIndex', searchable: false, sortable: false},
+                {data: 'DT_RowIndex', sortable: false},
                 {data: 'tanggal'},
                 {data: 'total_item'},
                 {data: 'total_harga'},
                 {data: 'diskon'},
                 {data: 'bayar'},
                 {data: 'kasir'},
-                {data: 'aksi', searchable: false, sortable: false},
+                {data: 'aksi', sortable: false},
             ]
         });
 

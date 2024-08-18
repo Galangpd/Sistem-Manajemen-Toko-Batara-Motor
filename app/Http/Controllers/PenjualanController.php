@@ -33,7 +33,7 @@ class PenjualanController extends Controller
                 return 'Rp. '. format_uang($penjualan->bayar);
             })
             ->addColumn('tanggal', function ($penjualan) {
-                return tanggal_indonesia($penjualan->created_at, false);
+                return tanggal_indonesia(date('d-m-Y', strtotime($penjualan->created_at)), false);
             })
             ->addColumn('kode_member', function ($penjualan) {
                 $member = $penjualan->member->kode_member ?? '';

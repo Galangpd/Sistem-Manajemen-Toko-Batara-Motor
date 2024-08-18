@@ -30,7 +30,7 @@
                     <div class="form-group row">
                         <label for="telepon" class="col-lg-2 control-label">Telepon</label>
                         <div class="col-lg-6">
-                            <input type="text" name="telepon" class="form-control" id="telepon" required>
+                            <input type="number" name="telepon" class="form-control" id="telepon" required>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
@@ -44,14 +44,13 @@
                     <div class="form-group row">
                         <label for="path_logo" class="col-lg-2 control-label">Logo Perusahaan</label>
                         <div class="col-lg-4">
-                            <input type="file" name="path_logo" class="form-control" id="path_logo"
-                                onchange="preview('.tampil-logo', this.files[0])">
+                            <input type="file" name="path_logo" class="form-control" id="path_logo" accept="image/*" onchange="preview('.tampil-logo', this.files[0])">
                             <span class="help-block with-errors"></span>
                             <br>
                             <div class="tampil-logo"></div>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row hidden">
                         <label for="path_kartu_member" class="col-lg-2 control-label">Kartu Member</label>
                         <div class="col-lg-4">
                             <input type="file" name="path_kartu_member" class="form-control" id="path_kartu_member"
@@ -62,13 +61,13 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="diskon" class="col-lg-2 control-label">Diskon</label>
+                        <label for="diskon" class="col-lg-2 control-label">Diskon Member</label>
                         <div class="col-lg-2">
-                            <input type="number" name="diskon" class="form-control" id="diskon" required>
+                            <input type="number" name="diskon" class="form-control" id="diskon" min="1" required>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row hidden">
                         <label for="tipe_nota" class="col-lg-2 control-label">Tipe Nota</label>
                         <div class="col-lg-2">
                             <select name="tipe_nota" class="form-control" id="tipe_nota" required>
