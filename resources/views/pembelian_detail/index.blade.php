@@ -206,6 +206,17 @@
         });
 
         $('.btn-simpan').on('click', function () {
+
+            let totalJumlahBarang = 0;
+            $('.table-pembelian .quantity').each(function () {
+                totalJumlahBarang += parseInt($(this).val()) || 0;
+            });
+
+            if (totalJumlahBarang === 0) {
+                alert('Tidak ada barang yang ditambahkan. Transaksi tidak bisa disimpan.');
+                return;
+            }
+
             $('.form-pembelian').submit();
         });
     });

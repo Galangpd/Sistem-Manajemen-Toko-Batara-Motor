@@ -240,7 +240,7 @@
             e.preventDefault(); // Mencegah pengiriman form default
 
             let diterima = parseFloat($('#diterima').val());
-            let total = parseFloat($('#total').val());
+            let bayar = parseFloat($('#bayar').val());
 
             let totalJumlahBarang = 0;
             $('.table-penjualan .quantity').each(function () {
@@ -252,7 +252,7 @@
                 return;
             }
 
-            if (diterima < total) {
+            if (diterima < bayar) {
                 alert('Nominal diterima kurang dari total pembayaran. Transaksi tidak bisa disimpan.');
                 return;
             }

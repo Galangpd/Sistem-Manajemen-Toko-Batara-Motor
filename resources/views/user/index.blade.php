@@ -55,16 +55,28 @@
         });
 
         $('#modal-form').validator().on('submit', function (e) {
-            if (! e.preventDefault()) {
-                $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
-                    .done((response) => {
-                        $('#modal-form').modal('hide');
-                        table.ajax.reload();
-                    })
-                    .fail((errors) => {
-                        alert('Tidak dapat menyimpan data');
-                        return;
-                    });
+            let password = $('#password').val();
+            let confirmPassword = $('#password_confirmation').val();
+
+            if (password !== confirmPassword) {
+                // Tampilkan pesan kesalahan jika password tidak cocok
+                $('#password-match').text('Password dan konfirmasi password tidak cocok').css('color', 'red');
+                e.preventDefault(); // Cegah pengiriman form
+                return false;
+            } else {
+                $('#password-match').text('');
+
+                if (! e.preventDefault()) {
+                    $.post($('#modal-form form').attr('action'), $('#modal-form form').serialize())
+                        .done((response) => {
+                            $('#modal-form').modal('hide');
+                            table.ajax.reload();
+                        })
+                        .fail((errors) => {
+                            alert('Tidak dapat menyimpan data');
+                            return;
+                        });
+                    }
             }
         });
     });

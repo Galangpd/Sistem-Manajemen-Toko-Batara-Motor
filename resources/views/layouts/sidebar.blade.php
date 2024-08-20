@@ -57,7 +57,7 @@
             </li>-->
             <li>
                 <a href="{{ route('pembelian.index') }}">
-                    <i class="fa fa-download"></i> <span>Barang Masuk</span>
+                    <i class="fa fa-download"></i> <span>Pembelian</span>
                 </a>
             </li>
             <!--<li>
@@ -88,11 +88,11 @@
                 </a>
             </li>
             @else
-            <li>
+            {{-- <li>
                 <a href="{{ route('transaksi.index') }}">
                     <i class="fa fa-cart-arrow-down"></i> <span>Transaksi Aktif</span>
                 </a>
-            </li>
+            </li> --}}
             <li>
                 <a href="{{ route('transaksi.baru') }}">
                     <i class="fa fa-cart-arrow-down"></i> <span>Transaksi Baru</span>

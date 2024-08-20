@@ -28,9 +28,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="foto" class="col-lg-2 control-label">Profil</label>
+                        <label for="foto" class="col-lg-2 control-label">Foto Profil</label>
                         <div class="col-lg-4">
-                            <input type="file" name="foto" class="form-control" id="foto"
+                            <input type="file" name="foto" class="form-control" id="foto" accept="image/*"
                                 onchange="preview('.tampil-foto', this.files[0])">
                             <span class="help-block with-errors"></span>
                             <br>
@@ -42,16 +42,14 @@
                     <div class="form-group row">
                         <label for="old_password" class="col-lg-2 control-label">Password Lama</label>
                         <div class="col-lg-6">
-                            <input type="password" name="old_password" id="old_password" class="form-control" 
-                            minlength="6">
+                            <input type="password" name="old_password" id="old_password" class="form-control">
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="password" class="col-lg-2 control-label">Password</label>
+                        <label for="password" class="col-lg-2 control-label">Password baru</label>
                         <div class="col-lg-6">
-                            <input type="password" name="password" id="password" class="form-control" 
-                            minlength="6">
+                            <input type="password" name="password" id="password" class="form-control" >
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
@@ -82,6 +80,17 @@
         });
 
         $('.form-profil').validator().on('submit', function (e) {
+            let password = $('#password').val();
+            let confirmPassword = $('#password_confirmation').val();
+
+            if (password !== confirmPassword) {
+                // Tampilkan pesan kesalahan jika password tidak cocok
+                $('#password-match').text('Password dan konfirmasi password tidak cocok').css('color', 'red');
+                e.preventDefault(); // Cegah pengiriman form
+                return false;
+            } else {
+                $('#password-match').text('');
+
             if (! e.preventDefault()) {
                 $.ajax({
                     url: $('.form-profil').attr('action'),
@@ -110,6 +119,7 @@
                     return;
                 });
             }
+        }
         });
     });
 </script>

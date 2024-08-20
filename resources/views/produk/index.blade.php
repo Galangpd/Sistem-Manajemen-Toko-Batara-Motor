@@ -98,7 +98,7 @@
 
     function addForm(url) {
         $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Tambah Produk');
+        $('#modal-form .modal-title').text('Tambah Barang');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
